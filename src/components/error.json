@@ -1,0 +1,19 @@
+{
+  "error": {
+    "code": "0x80040220",
+    "message": "Principal user (Id=6f269a91-70cc-ed11-b597-000d3a4b4d34, type=8, roleCount=1, privilegeCount=425, accessMode=0), is missing prvReadcre84_Question privilege (Id=05679366-1a38-4699-ac67-e145f0e29fff) on OTC=10168 for entity 'cre84_question' (LocalizedName='Question'). context.Caller=6f269a91-70cc-ed11-b597-000d3a4b4d34",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.ApiExceptionSourceKey": "Plugin/Microsoft.Crm.ObjectModel.CustomBusinessEntityService",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.ApiStepKey": "02a0a5dc-7a26-ed11-9db1-000d3aab1e4b",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.ApiDepthKey": "1",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.ApiActivityIdKey": "d8e18961-d548-4fa9-9072-a4fcd703a868",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.ApiPluginSolutionNameKey": "System",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.ApiStepSolutionNameKey": "System",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.ApiExceptionCategory": "ClientError",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.ApiExceptionMessageName": "PrivilegeDenied",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.ApiExceptionHttpStatusCode": "403",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.0": "prvReadcre84_Question",
+    "@Microsoft.PowerApps.CDS.ErrorDetails.1": "cre84_question",
+    "@Microsoft.PowerApps.CDS.HelpLink": "http://go.microsoft.com/fwlink/?LinkID=398563&error=Microsoft.Crm.CrmException%3a80040220&client=platform",
+    "@Microsoft.PowerApps.CDS.InnerError.Message": "Principal user (Id=6f269a91-70cc-ed11-b597-000d3a4b4d34, type=8, roleCount=1, privilegeCount=425, accessMode=0), is missing prvReadcre84_Question privilege (Id=05679366-1a38-4699-ac67-e145f0e29fff) on OTC=10168 for entity 'cre84_question' (LocalizedName='Question'). context.Caller=6f269a91-70cc-ed11-b597-000d3a4b4d34"
+  }
+}
