@@ -1,0 +1,36 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import designSystem from './planetaria-design-system.png'
+
+export const meta = {
+  author: 'James Ryan',
+  date: '2023-04-03',
+  title: 'Top 5 Tips to Streamline Your Custom Connector ALM Process',
+  description:
+    'Most companies try to stay ahead of the curve when it comes to visual design, but for Planetaria we needed to create a brand that would still inspire us 100 years from now when humanity has spread across our entire solar system.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+
+1. Initialize Repository
+2. Create a new pipeline
+3. Select Agent job 1 and enable the Allow scripts to access the OAuth token option
+4. Install Power Platform Build Tools
+5. Add Power Platform Tool Installer Task
+6. Add Power Platform Export Solution Unmanaged Task
+7. Add Power Platform Export Solution Managed Task
+8. Add Power Platform Checker Task
+9. Add Power Platform Unpack Solution Task
+10. Add Command line Task
+
+
+## Pre-Lab Setup:
+
+You will need to create three environments in your demo or customer tenant. To do this follow these
+instructions:
+
+1. Log into a tenant that you have access to and that has a minimum of 3GB available capacity
+   which is required to create the three environments.
+2. Go to https://admin.powerapps.com , this will take you to the Admin center
+3. Select Environments in the navigation area.
