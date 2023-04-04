@@ -1,6 +1,7 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
 import Image from 'next/image'
-import designSystem from './planetaria-design-system.png'
+import architecture from './architecture.png'
+import createEnvironment from './create-new-env.png'
 
 export const meta = {
   author: 'James Ryan',
@@ -11,6 +12,26 @@ export const meta = {
 }
 
 export default (props) => <ArticleLayout meta={meta} {...props} />
+
+This article outlines techniques for exporting your unmanaged Power Platform solution into source control, building a managed solution from the source code, and releasing the solution to a downstream environment. To follow along, you'll need to create three Power Platform Environments as well as three Azure DevOps pipelines to automate the processes.
+
+<Image src={architecture} alt="North Star Architecture" />
+
+
+## Setup:
+
+You will need to create three environments in your tenant:
+
+1. Log into your tenant (must have a minimum of 3GB available capacity).
+2. Go to https://admin.powerplatform.microsoft.com/environments.
+3. Click on the "+ New" button in the command bar.
+4. Set the **Name** to "Development", set the **Region** to the region that's local to you, set the **Type** to "Sandbox", and set **Add a Dataverse data store?** to "Yes".
+
+<Image src={createEnvironment} alt="Create a new environment" />
+
+
+
+
 
 
 1. Initialize Repository
@@ -23,14 +44,3 @@ export default (props) => <ArticleLayout meta={meta} {...props} />
 8. Add Power Platform Checker Task
 9. Add Power Platform Unpack Solution Task
 10. Add Command line Task
-
-
-## Pre-Lab Setup:
-
-You will need to create three environments in your demo or customer tenant. To do this follow these
-instructions:
-
-1. Log into a tenant that you have access to and that has a minimum of 3GB available capacity
-   which is required to create the three environments.
-2. Go to https://admin.powerapps.com , this will take you to the Admin center
-3. Select Environments in the navigation area.
