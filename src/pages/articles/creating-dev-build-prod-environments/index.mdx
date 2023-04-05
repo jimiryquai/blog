@@ -2,6 +2,8 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 import Image from 'next/image'
 import architecture from './architecture.png'
 import createEnvironment from './create-new-env.png'
+import createSecurityGroup from './create-new-env-security.png'
+import aadSecurityGroup from './aad-security-group.png'
 
 export const meta = {
   author: 'James Ryan',
@@ -24,10 +26,30 @@ You will need to create three environments in your tenant:
 
 1. Log into your tenant (must have a minimum of 3GB available capacity).
 2. Go to https://admin.powerplatform.microsoft.com/environments.
-3. Click on the "+ New" button in the command bar.
-4. Set the **Name** to "Development", set the **Region** to the region that's local to you, set the **Type** to "Sandbox", and set **Add a Dataverse data store?** to "Yes".
+3. Click on the "**+ New**" button in the command bar.
+4. Set the **Name** to "Development", set the **Region** to the region that you're in, set the **Type** to "Sandbox", and set **Add a Dataverse data store?** to "Yes".
+5. Click on the "**Next**" button.
 
 <Image src={createEnvironment} alt="Create a new environment" />
+
+6. Set the **Language** to "English - United States", set the **URL** to yourdomain-environment prefix/acronym (jamesryan-dev, jamesryan-qa etc), set the **Currency** to your currency, set **Enable Dynamics 365 apps?** to "No", set **Deploy sample apps and data?** to "No".
+
+<Image src={createSecurityGroup} alt="Secure a new environment" />
+
+7. Whilst not strictly necessary for the purpsoses of following along with this article, it's always a good idea to protect your environments with a security group. This will allow you to control who has access to the environments and is a prerequisite for establishing Role Based Access Control (RBAC is outside the scope of this article but I will write an article to cover this subject). If you already have a security group set up, click on the "**+ Select**" button. <br /><br />If you don't, head to https://portal.azure.com/#view/Microsoft_AAD_IAM/GroupsManagementMenuBlade/~/AllGroups and click on the "**+ New group**" button.
+
+
+8. Set the **Group type** to "Security", set the **Group name** to "SG_PowerPlatform_DEV" (the last part of this naming convention is the environment prefix or acronym - I chose DEV but it could be QA, UAT etc), set the **Group description** to "Membership grants access to Power Platform DEV environment", add yourself as an **Owner** and **Member** of the group, and then click on the "**Create**" button.
+
+<Image src={aadSecurityGroup} alt="Create an AAD security group" />
+
+
+
+
+
+
+
+
 
 
 
