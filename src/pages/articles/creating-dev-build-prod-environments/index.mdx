@@ -4,6 +4,7 @@ import architecture from './architecture.png'
 import createEnvironment from './create-new-env.png'
 import createSecurityGroup from './create-new-env-security.png'
 import aadSecurityGroup from './aad-security-group.png'
+import addSecurityGroup from './add-sg-to-env.png'
 
 export const meta = {
   author: 'James Ryan',
@@ -19,8 +20,7 @@ This article outlines techniques for exporting your unmanaged Power Platform sol
 
 <Image src={architecture} alt="North Star Architecture" />
 
-
-## Setup:
+## Power Platform Setup:
 
 You will need to create three environments in your tenant:
 
@@ -30,39 +30,39 @@ You will need to create three environments in your tenant:
 4. Set the **Name** to "Development", set the **Region** to the region that you're in, set the **Type** to "Sandbox", and set **Add a Dataverse data store?** to "Yes".
 5. Click on the "**Next**" button.
 
-<Image src={createEnvironment} alt="Create a new environment" />
+<Image src={createEnvironment} alt="Creating a new environment" />
 
 6. Set the **Language** to "English - United States", set the **URL** to yourdomain-environment prefix/acronym (jamesryan-dev, jamesryan-qa etc), set the **Currency** to your currency, set **Enable Dynamics 365 apps?** to "No", set **Deploy sample apps and data?** to "No".
 
-<Image src={createSecurityGroup} alt="Secure a new environment" />
+<Image src={createSecurityGroup} alt="Securing a new environment" />
 
 7. Whilst not strictly necessary for the purpsoses of following along with this article, it's always a good idea to protect your environments with a security group. This will allow you to control who has access to the environments and is a prerequisite for establishing Role Based Access Control (RBAC is outside the scope of this article but I will write an article to cover this subject). If you already have a security group set up, click on the "**+ Select**" button. <br /><br />If you don't, head to [AAD Groups](https://portal.azure.com/#view/Microsoft_AAD_IAM/GroupsManagementMenuBlade/~/AllGroups) in your tenant and click on the "**+ New group**" button.
 
-
 8. Set the **Group type** to "Security", set the **Group name** to "SG_PowerPlatform_DEV" (the last part of this naming convention is the environment prefix or acronym - I chose DEV but it could be QA, UAT etc), set the **Group description** to "Membership grants access to Power Platform DEV environment", add yourself as an **Owner** and **Member** of the group, and then click on the "**Create**" button.
 
-<Image src={aadSecurityGroup} alt="Create an AAD security group" />
+<Image src={aadSecurityGroup} alt="Creating an AAD security group" />
 
+9. Back in the Power Platform Admin Center, click on the "**+ Select**" button, and select the security group that you just created from the list of groups, click on the "**Done**" button, and then click on the "**Save**" button to create your protected environment.
 
+<Image
+  src={addSecurityGroup}
+  alt="Protecting your environment with a AAD security group"
+/>
 
+10. Congrats - your Development environment has been created! Now loop through steps 2 to 9 to create second and third environments called QA, and Prod respectively.
 
+## Azure DevOps Setup:
 
-
-
-
-
-
-
-
-
+1. Create a Azure DevOps project by navigating to https://dev.azure.com and select Sign into Azure
+   DevOps
 
 1. Initialize Repository
-2. Create a new pipeline
-3. Select Agent job 1 and enable the Allow scripts to access the OAuth token option
-4. Install Power Platform Build Tools
-5. Add Power Platform Tool Installer Task
-6. Add Power Platform Export Solution Unmanaged Task
-7. Add Power Platform Export Solution Managed Task
-8. Add Power Platform Checker Task
-9. Add Power Platform Unpack Solution Task
-10. Add Command line Task
+1. Create a new pipeline
+1. Select Agent job 1 and enable the Allow scripts to access the OAuth token option
+1. Install Power Platform Build Tools
+1. Add Power Platform Tool Installer Task
+1. Add Power Platform Export Solution Unmanaged Task
+1. Add Power Platform Export Solution Managed Task
+1. Add Power Platform Checker Task
+1. Add Power Platform Unpack Solution Task
+1. Add Command line Task
