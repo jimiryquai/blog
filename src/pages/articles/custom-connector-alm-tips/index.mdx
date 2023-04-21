@@ -1,0 +1,129 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import environmentVariables from './environment-variables.png'
+import configurationMigration from './configuration-migration.png'
+import fieldCompare from './field-compare.png'
+
+export const meta = {
+  author: 'James Ryan',
+  date: '2023-04-03',
+  title: 'Streamline Your Custom Connector ALM With These Top Tips',
+  description: 'Custom connectors.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+I've been working on a project for the past few months that relies heavily on Custom Connectors to comminucate with services that aren't available as prebuilt connectors. During this time, I've learned a lot about how to streamline the development process for custom connectors. In this post, I'll share some of the tips and tricks I've learned along the way.
+
+### Tip 1: If you create a Postman Collection for your API, make sure to add a number greater than 0 after the `.` for any properties that you want to be of type `number` in your custom connector.
+
+One of the APIs that I needed to describe did not have an OpenAPI definition so I went ahead and created a [Postman Collection](https://learn.microsoft.com/en-us/connectors/custom-connectors/create-postman-collection) for it, based on the Excel spreadsheet 'documentation' that was provided 🤢.
+
+I added in the HTTP requests and below is the response that I got back from one of the requests:
+
+```json
+[
+  {
+    "$id": "1",
+    "QuotationID": "",
+    "PaymentSchedule": "6M",
+    "TotalSalesAmount": 995.0,
+    "DepositAmount": 200.0,
+    "InstallmentRate": 0.0,
+    "RiskRate": 0.0,
+    "InstallmentNetCharge": 0.0,
+    "RiskNetCharge": 0.0,
+    "MonthlyTotalAmount": 132.5,
+    "TotalMonths": 6,
+    "Description": "6 Months",
+    "FirstTotalAmount": 132.5,
+    "DiscountAmount": 0.0,
+    "DiscountType": "None",
+    "DiscountTillDate": "1900-01-01T12:00:00"
+  }
+]
+```
+
+Check out what happened when I saved this response as an example:
+
+```json
+[
+  {
+    "$id": "1",
+    "QuotationID": "",
+    "PaymentSchedule": "6M",
+    "TotalSalesAmount": 995,
+    "DepositAmount": 200,
+    "InstallmentRate": 0,
+    "RiskRate": 0,
+    "InstallmentNetCharge": 0,
+    "RiskNetCharge": 0,
+    "MonthlyTotalAmount": 132.5,
+    "TotalMonths": 6,
+    "Description": "6 Months",
+    "FirstTotalAmount": 132.5,
+    "DiscountAmount": 0,
+    "DiscountType": "None",
+    "DiscountTillDate": "1900-01-01T12:00:00"
+  }
+]
+```
+
+All of the properties in the response that were of type `number` but only had a 0 after the `.` were converted to `integer` types. This is a problem because the API actually returns a `number` type for these properties. I was able to fix this by adding a number greater than 0 after the `.` in the example response.
+
+### Tip 2: Use environment variables in solution custom connectors to update custom connector properties across environments
+
+Key custom connector properties such as `Host`, `Base URL`, `Client ID` and `Client Secret` often require different input parameters when deployed to different environments. Environment variables store the parameter keys and values, and can be used to update the custom connector properties across environments.
+
+For a detailed tutorial, you can read [this blog](https://powerautomate.microsoft.com/blog/environment-variables-in-custom-connectors/)
+
+<Image src={environmentVariables} alt="Environment Variables" />
+
+### Tip 3: Custom connectors are stored as data so this data must be version controlled and deployed downstream
+
+We found that, even though we were using environment variables to update the custom connector properties across environments, our changes to the custom connector icon and actions etc were not being reflected downstream post-deployment. This is because the custom connector is stored as data and this data must be version controlled and deployed downstream.
+
+#### How to Export your data from your Source Environment:
+
+1. Open up the Configuration Migration tool that is part of the CRM SDK > Create schema > Continue > Login > Select the environment where your custom connector definitions are stored
+2. Select the **Default Solution** and the **Connector** entity
+3. Add the following fields:
+
+- Capabilities
+- Component State
+- ConnectionParameters
+- Connector
+- connectoridunique
+- Description
+- Display Name
+- Icon Blob
+- Icon Brand Color
+- iconblobid
+- Internal Connector Id
+- Introduced Version
+- Is Managed
+- Open Api Definition
+- PolicyTemplateInstances
+- ScriptOperations
+- Solution
+- Status
+- Status Reason
+
+<Image src={configurationMigration} alt="Configuration Migration" />
+
+4. Select Tools > Configure Import Settings > Entity Fields: **Connector** > Add Field > Save > Save and Export > File name: **schema** > Save > Yes > Save data to file > File name: **data** > Save > Export Data
+
+<Image src={fieldCompare} alt="Field for comparison" />
+
+#### How to Import your data into your Target Environment(s):
+
+1. Open up the Configuration Migration tool that is part of the CRM SDK > Import data > Continue > Login > Select the environment where you want to import your custom connector definitions > Login > Zip File: **data.zip** (created when exporting) > Import Data
+
+#### How to version control your data:
+
+1. Create a Config folder in your repository
+2. Unzip data.zip (created when exporting) > Copy the contents into the Config folder > Commit
+
+## Conclusion
+
+I hope these tips help save you some time and frustration when working with custom connectors across enviroments.
