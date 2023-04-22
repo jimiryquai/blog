@@ -4,7 +4,7 @@ export const config = {
   runtime: 'edge',
 };
  
-export default function () {
+export default function og () {
   return new ImageResponse(
     (
       <div
