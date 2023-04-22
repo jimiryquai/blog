@@ -46,10 +46,6 @@ export default function Home({ articles }) {
           name="description"
           content="I’m James, a Power Platform Consultant based in the UK."
         />
-        <meta
-          property="og:image"
-          content="https://jamesryan.dev/api/og"
-        />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
