@@ -41,6 +41,8 @@ const { Content, headings } = await render();
       alt={title}
       class="rounded-2xl shadow-xl mb-28 aspect-thumbnail object-cover"
     />
-    <Content />
+    <div class="prose prose-2xl overflow-visible relative">
+      <Content />
+    </div>
   </Main>
 </Layout>
