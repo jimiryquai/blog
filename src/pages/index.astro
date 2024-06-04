@@ -1,11 +1,13 @@
 ---
+import H1 from "../components/H1.astro";
+import Main from "../components/Main.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main class="px-24 max-sm:px-5 max-w-7xl mx-auto w-full">
-    <h1 class="text-6xl text-zinc-950 font-bold mb-5">James's Blog</h1>
+  <Main>
+    <H1 text={`James' Blog`} />
     <p class="text-zinc-900 text-2xl mb-24 maz-sm:mb-14">A blog for James</p>
     <hr class="w-full border border-zinc-900 mb-16 max-sm:mb-10" />
-  </main>
+  </Main>
 </Layout>
