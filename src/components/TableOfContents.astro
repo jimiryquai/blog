@@ -10,16 +10,12 @@ const {
 } = Astro;
 ---
 
-<nav
-  class="max-lg:hidden"
-  aria-roledescription="table of contents"
-  role="navigation"
->
+<nav aria-roledescription="table of contents" role="navigation">
   <ul>
     {
       headings.map((heading) => (
         <li class="text-xl mb-4 text-zinc-500">
-          <a href={`#${heading.slug}`}>{heading.text}</a>
+          <a href={`#${heading.slug}`}># {heading.text}</a>
         </li>
       ))
     }

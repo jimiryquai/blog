@@ -4,6 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import Main from "../../components/Main.astro";
 import H1 from "../../components/H1.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
+import Share from "../../components/Share.astro";
 
 export const getStaticPaths = async () => {
   const posts = await getCollection("posts");
@@ -19,31 +20,27 @@ type Props = {
   post: CollectionEntry<"posts">;
 };
 
-const {
-  props: {
-    post: {
-      data: { title, image },
-      render,
-    },
-  },
-} = Astro;
+const { post } = Astro.props;
 
-const { Content, headings } = await render();
+const { Content, headings } = await post.render();
 ---
 
-<Layout title={title}>
+<Layout title={post.data.title}>
   <Main>
     <a href="/blog" class="text-zinc-500 text-2xl mb-16 underline block"
       >&larr; Back to all blogs</a
     >
-    <H1 text={title} />
+    <H1 text={post.data.title} />
     <img
-      src={image}
-      alt={title}
+      src={post.data.image}
+      alt={post.data.title}
       class="rounded-2xl shadow-xl mb-28 aspect-thumbnail object-cover"
     />
-    <div class="relative flex gap-x-12">
+    <div class="mb-1">
       <TableOfContents headings={headings} />
+    </div>
+    <div class="relative">
+      <Share post={post} />
       <div class="prose prose-2xl overflow-visible relative">
         <Content />
       </div>
