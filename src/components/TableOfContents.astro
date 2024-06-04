@@ -1,0 +1,27 @@
+---
+import type { MarkdownHeading } from "astro";
+
+type Props = {
+  headings: MarkdownHeading[];
+};
+
+const {
+  props: { headings },
+} = Astro;
+---
+
+<nav
+  class="max-lg:hidden"
+  aria-roledescription="table of contents"
+  role="navigation"
+>
+  <ul>
+    {
+      headings.map((heading) => (
+        <li class="text-xl mb-4 text-zinc-500">
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

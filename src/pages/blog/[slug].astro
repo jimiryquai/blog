@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Main from "../../components/Main.astro";
 import H1 from "../../components/H1.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 
 export const getStaticPaths = async () => {
   const posts = await getCollection("posts");
@@ -41,8 +42,11 @@ const { Content, headings } = await render();
       alt={title}
       class="rounded-2xl shadow-xl mb-28 aspect-thumbnail object-cover"
     />
-    <div class="prose prose-2xl overflow-visible relative">
-      <Content />
+    <div class="relative flex gap-x-12">
+      <TableOfContents headings={headings} />
+      <div class="prose prose-2xl overflow-visible relative">
+        <Content />
+      </div>
     </div>
   </Main>
 </Layout>

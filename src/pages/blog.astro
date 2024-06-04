@@ -3,13 +3,14 @@ import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import PostList from "../components/PostList.astro";
 import Main from "../components/Main.astro";
+import H1 from "../components/H1.astro";
 
 const allPosts = await getCollection("posts");
 ---
 
 <Layout title="Blog">
   <Main>
-    <h1 class="text-6xl text-zinc-950 font-bold mb-5">Blog</h1>
+    <H1 text={`James' Blog`} />
     <p class="text-zinc-900 text-2xl mb-24">A blog for James</p>
     <PostList posts={allPosts} />
   </Main>
