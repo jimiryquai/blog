@@ -6,6 +6,7 @@ import H1 from "../../components/H1.astro";
 import Main from "../../components/Main.astro";
 import PostList from "../../components/PostList.astro";
 import Layout from "../../layouts/Layout.astro";
+import Pagination from "../../components/Pagination.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPosts = await getCollection("posts");
@@ -24,6 +25,12 @@ const posts = page.data;
   <Main>
     <H1 text="James' Blog" />
     <p class="text-zinc-900 text-2xl mb-24">A blog for James</p>
+    <div class="mb-12">
+      <Pagination prevURL={page.url.prev} nextURL={page.url.next} />
+    </div>
     <PostList posts={posts} />
+    <div class="mb-36">
+      <Pagination prevURL={page.url.prev} nextURL={page.url.next} />
+    </div>
   </Main>
 </Layout>
