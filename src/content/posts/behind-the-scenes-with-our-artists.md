@@ -3,7 +3,7 @@ author: dwight-schrute
 categories: ["studio tips"]
 date: 08/10/2021
 featured: false
-image: ../images/photoshoot.jpg
+image: /images/photoshoot.jpg
 title: Behind the scenes with our artists
 description: A look at the creative process and inspiration behind the music of our talented artists.
 ---

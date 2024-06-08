@@ -3,7 +3,7 @@ author: dwight-schrute
 categories: ["career advice"]
 date: 08/10/2021
 featured: false
-image: ../images/gear.jpg
+image: /images/gear.jpg
 title: Gear is insanely expensive
 description: A discussion of the high costs associated with music equipment and the impact on musicians and the industry as a whole.
 ---
