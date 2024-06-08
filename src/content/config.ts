@@ -9,6 +9,7 @@ const postsCollection = defineCollection({
     featured: z.boolean().default(false),
     image: z.string(),
     title: z.string(),
+    description: z.string(),
   })
 });
 

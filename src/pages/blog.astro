@@ -9,7 +9,7 @@ import Pagination from "../components/Pagination.astro";
 const posts = (await getCollection("posts")).slice(0, 6);
 ---
 
-<Layout title="Blog">
+<Layout title="Blog" description="A blog for James">
   <Main>
     <H1 text="James' Blog" />
     <p class="text-zinc-900 text-2xl mb-24">A blog for James</p>

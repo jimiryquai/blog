@@ -5,6 +5,7 @@ date: 08/10/2021
 featured: true
 image: ../images/producer.jpg
 title: The art of music production
+description: A deep dive into the technical and creative aspects of producing music, from recording to mixing and mastering.
 ---
 
 Collaboration is a key component of many creative endeavors, and music production is no exception. In fact, collaboration can be essential to the success of a music project, as it allows for the pooling of diverse talents and perspectives to create something truly unique and compelling.
