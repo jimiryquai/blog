@@ -7,6 +7,7 @@ import Main from "../../components/Main.astro";
 import PostList from "../../components/PostList.astro";
 import Layout from "../../layouts/Layout.astro";
 import Pagination from "../../components/Pagination.astro";
+import CategoryList from "../../components/CategoryList.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPosts = await getCollection("posts");
@@ -19,12 +20,20 @@ type Props = {
 
 const { page } = Astro.props;
 const posts = page.data;
+const allCategories = posts.flatMap((post) => post.data.categories);
+const categories = [...new Set(allCategories)];
 ---
 
 <Layout title="Blog" description="A blog for James">
   <Main>
     <H1 text="James' Blog" />
     <p class="text-zinc-900 text-2xl mb-24">A blog for James</p>
+    <div
+      class="grid grid-cols-[auto_1fr] gap-x-14 gap-y-3 mb-16 max-lg:grid-cols-3"
+    >
+      <h2 class="font-bold text-5xl text-zinc-900">Tags</h2>
+      <CategoryList categories={categories} />
+    </div>
     <div class="mb-12">
       <Pagination prevURL={page.url.prev} nextURL={page.url.next} />
     </div>

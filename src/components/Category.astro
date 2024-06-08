@@ -1,0 +1,15 @@
+---
+type Props = {
+  category: string;
+};
+
+const { category } = Astro.props;
+---
+
+<div class="flex flex-wrap items-center gap-4">
+  <a
+    href={`/category/${category}`}
+    class="text-zinc-900 rounded-3xl uppercase text-xl p-2 border-2 border-zinc-900 whitespace-nowrap"
+    >{category}</a
+  >
+</div>

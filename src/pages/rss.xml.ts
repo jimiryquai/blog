@@ -29,7 +29,6 @@ export async function GET(context: APIContext) {
       medium="image"
       url="${context.site + post.data.image.slice(1)}" />
   `,
-      image: post.data.image,
     })),
   });
 }

@@ -1,0 +1,12 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Category from "./Category.astro";
+
+type Props = {
+  categories: CollectionEntry<"posts">["data"]["categories"];
+};
+
+const { categories } = Astro.props;
+---
+
+{categories.map((category: string) => <Category category={category} />)}
