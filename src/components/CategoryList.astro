@@ -4,9 +4,18 @@ import Category from "./Category.astro";
 
 type Props = {
   categories: CollectionEntry<"posts">["data"]["categories"];
+  title?: string;
 };
 
-const { categories } = Astro.props;
+const { categories, title } = Astro.props;
 ---
 
-{categories.map((category: string) => <Category category={category} />)}
+<div
+  class="grid grid-cols-[auto,1fr] gap-x-14 gap-y-3 mb-16 max-lg:grid-cols-1"
+>
+  {title && <h2 class="font-bold text-5xl text-sinc-900">{title}</h2>}
+
+  <div class="flex gap-4 flex-wrap items-center">
+    {categories.map((category) => <Category category={category} />)}
+  </div>
+</div>

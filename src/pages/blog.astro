@@ -17,10 +17,9 @@ const categories = [...new Set(allCategories)];
     <H1 text="James' Blog" />
     <p class="text-zinc-900 text-2xl mb-24">A blog for James</p>
     <div
-      class="grid grid-cols-[auto_1fr] gap-x-14 gap-y-3 mb-16 max-lg:grid-cols-3"
+      class="grid grid-cols-[auto,1fr] gap-x-14 gap-y-3 mb-16 max-lg:grid-cols-1"
     >
-      <h2 class="font-bold text-5xl text-zinc-900">Tags</h2>
-      <CategoryList categories={categories} />
+      <CategoryList categories={categories} title="Tags" />
     </div>
     <div class="mb-12">
       <Pagination nextURL="/blog/2" />
