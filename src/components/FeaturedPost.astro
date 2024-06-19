@@ -7,19 +7,22 @@ type Props = {
   post: CollectionEntry<"posts">;
 };
 
-const { post } = Astro.props;
+const {
+  post: {
+    body,
+    data: { categories, date, image, title },
+    slug,
+  },
+} = Astro.props;
 ---
 
 <article
   class="grid grid-cols-2 gap-x-12 gap-y-5 mb-28 max-lg:grid-cols-1 max-sm:mb-12"
 >
-  <a
-    href={`/blog/${post.slug}`}
-    aria-label={`Read more about ${post.data.title}`}
-  >
+  <a href={`/blog/${slug}`} aria-label={`Read more about ${title}`}>
     <Image
-      src={post.data.image}
-      alt={post.data.title}
+      src={image}
+      alt={title}
       width={1024}
       height={1024 / 1.5}
       format="webp"
@@ -29,22 +32,22 @@ const { post } = Astro.props;
 
   <div>
     <div class="mb-4">
-      <CategoryList categories={post.data.categories} />
+      <CategoryList categories={categories} />
     </div>
 
     <a
-      href={`/blog/${post.slug}`}
+      href={`/blog/${slug}`}
       class="text-5xl text-zinc-900 mb-4 font-bold inline-block"
     >
-      {post.data.title}
+      {title}
     </a>
 
     <p class="text-zinc-500 text-2xl mb-9 line-clamp-3 max-xl:line-clamp-2">
-      {post.body}
+      {body}
     </p>
 
     <span class="text-zinc-700 text-xl">
-      {post.data.date}
+      {date}
     </span>
   </div>
 </article>
