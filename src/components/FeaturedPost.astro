@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import CategoryList from "./CategoryList.astro";
+
+type Props = {
+  post: CollectionEntry<"posts">;
+};
+
+const { post } = Astro.props;
+---
+
+<article
+  class="grid grid-cols-2 gap-x-12 gap-y-5 mb-28 max-lg:grid-cols-1 max-sm:mb-12"
+>
+  <a
+    href={`/blog/${post.slug}`}
+    aria-label={`Read more about ${post.data.title}`}
+  >
+    <Image
+      src={post.data.image}
+      alt={post.data.title}
+      width={1024}
+      height={1024 / 1.5}
+      format="webp"
+      class="rounded-2xl aspect-thumbnail object-cover"
+    />
+  </a>
+
+  <div>
+    <div class="mb-4">
+      <CategoryList categories={post.data.categories} />
+    </div>
+
+    <a
+      href={`/blog/${post.slug}`}
+      class="text-5xl text-zinc-900 mb-4 font-bold inline-block"
+    >
+      {post.data.title}
+    </a>
+
+    <p class="text-zinc-500 text-2xl mb-9 line-clamp-3 max-xl:line-clamp-2">
+      {post.body}
+    </p>
+
+    <span class="text-zinc-700 text-xl">
+      {post.data.date}
+    </span>
+  </div>
+</article>

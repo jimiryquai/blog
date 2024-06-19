@@ -1,13 +1,20 @@
 ---
+import { getCollection } from "astro:content";
 import H1 from "../components/H1.astro";
 import Main from "../components/Main.astro";
 import Layout from "../layouts/Layout.astro";
+import FeaturedPost from "../components/FeaturedPost.astro";
+
+const allPosts = await getCollection("posts");
+const featuredPosts = allPosts.filter((post) => post.data.featured);
+const posts = allPosts.filter((post) => !post.data.featured).slice(0, 4);
 ---
 
 <Layout title="Welcome to Astro.">
   <Main>
     <H1 text="James' Blog" />
     <p class="text-zinc-900 text-2xl mb-24 maz-sm:mb-14">A blog for James</p>
+    {featuredPosts.map((post) => <FeaturedPost post={post} />)}
     <hr class="w-full border border-zinc-900 mb-16 max-sm:mb-10" />
   </Main>
 </Layout>
