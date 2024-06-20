@@ -27,7 +27,7 @@ export async function GET(context: APIContext) {
       width="${1024}"
       height="${1024 / 1.5}"
       medium="image"
-      url="${context.site}src/content/${post.data.image.slice(1)}" />
+      url="${context.site}src/content/posts${post.data.image.slice(1)}" />
   `,
     })),
   });
