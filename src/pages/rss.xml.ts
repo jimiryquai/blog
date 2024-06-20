@@ -18,8 +18,6 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       pubDate: new Date(post.data.date),
       description: post.data.description,
-      // Compute RSS link from post `slug`
-      // This example assumes all posts are rendered as `/blog/[slug]` routes
       link: `/blog/${post.slug}/`,
       content: parser.render(sanitizeHtml(post.body)),
       customData: `<media:content
@@ -28,7 +26,7 @@ export async function GET(context: APIContext) {
       height="${1024 / 1.5}"
       medium="image"
       url="${context.site}src/content/posts${post.data.image.slice(1)}" />
-  `,
+      `,
     })),
   });
 }
