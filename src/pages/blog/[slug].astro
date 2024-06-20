@@ -9,10 +9,12 @@ import Share from "../../components/Share.astro";
 export const getStaticPaths = async () => {
   const posts = await getCollection("posts");
 
-  const paths = posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  const paths = posts.map((post) => {
+    return {
+      params: { slug: post.slug },
+      props: { post },
+    };
+  });
   return paths;
 };
 

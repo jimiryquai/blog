@@ -10,8 +10,8 @@ export interface Props {
 }
 
 const {
-  title = "James Ryan",
-  description = "A blog for low code enthusiasts",
+  title = "Home",
+  description = "Welcome to my blog",
   image = "/images/cover.jpg",
 } = Astro.props;
 ---
@@ -27,7 +27,7 @@ const {
     <link
       rel="alternate"
       type="application/rss+xml"
-      title="Your Site's Title"
+      title="James Ryan's Blog"
       href={`${Astro.site}rss.xml`}
     />
     <title>{title}</title>
