@@ -9,7 +9,7 @@ export async function GET(context: APIContext) {
   const posts = await getCollection('posts');
   return rss({
     title: 'James Ryan',
-    description: 'A comminuty of low code enthusiasts',
+    description: 'A community of low code enthusiasts',
     site: context.site?.toString() ?? '',
     xmlns: {
       media: "http://search.yahoo.com/mrss/",
@@ -23,11 +23,11 @@ export async function GET(context: APIContext) {
       link: `/blog/${post.slug}/`,
       content: parser.render(sanitizeHtml(post.body)),
       customData: `<media:content
-      type="image/jpg"
+      type="image/${post.data.image.split('.').pop()}"
       width="${1024}"
-      height="${1024/2}"
+      height="${1024 / 1.5}"
       medium="image"
-      url="${context.site + post.data.image.slice(1)}" />
+      url="${context.site}src/content/${post.data.image.slice(1)}" />
   `,
     })),
   });
